@@ -179,4 +179,6 @@ controller.hears(['create contact', 'new contact'], 'direct_message,direct_menti
 
 });
 
-
+app.listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
+});
