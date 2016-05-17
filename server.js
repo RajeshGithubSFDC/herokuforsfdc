@@ -2,6 +2,10 @@
 
 const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 
+var express = require('express'),
+    app = express();
+app.set('port', process.env.PORT || 5000);
+
 let Botkit = require('botkit'),
     formatter = require('./modules/slack-formatter'),
     salesforce = require('./modules/salesforce'),
@@ -176,8 +180,3 @@ controller.hears(['create contact', 'new contact'], 'direct_message,direct_menti
 });
 
 
-// To keep Heroku's free dyno awake
-http.createServer(function(request, response) {
-    response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.end('Ok, dyno is awake.');
-}).listen(process.env.PORT || 5000);
